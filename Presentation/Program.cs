@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 //builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("EventDatabaseConnection")));
 var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings-DefaultConnection2");
 
-
+Console.WriteLine(Environment.GetEnvironmentVariable("ConnectionStrings-DefaultConnection2"));
 // Add services to the container.
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(connectionString));
 builder.Services.AddControllers();
