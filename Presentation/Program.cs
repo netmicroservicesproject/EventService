@@ -26,8 +26,11 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<EventService>();
 
-
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole(); // Enables console logging, which Azure should capture
+builder.Logging.AddDebug();   // Adds debug output for local troubleshooting
+var logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger("Startup");
+logger.LogInformation("Application is starting up...");
 // For solving CORS problems
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAll",
